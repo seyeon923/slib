@@ -1,3 +1,7 @@
+# build files
+build
+
+# gitignore for CMake 
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
