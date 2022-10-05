@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stddef.h>
 
 #include "include/slib/list.h"
 
@@ -21,8 +20,8 @@ int main() {
 
     printf("[Head]");
     for (slib_list_node* p = head.next; p != &head; p = p->next) {
-        printf("<->[emp:%d]",
-               ((Employee*)((char*)p - offsetof(Employee, list_node)))->emp_no);
+        Employee* p_emp = SLIB_CONTAINER_OF(p, Employee, list_node);
+        printf("<->[emp:%d]", p_emp->emp_no);
     }
     printf("<->[Head]\n");
 
