@@ -10,6 +10,15 @@ typedef struct employee {
 
 #define NUM_EMP 10
 
+void print_employee_list(slib_list_node* head) {
+    printf("[Head]");
+    for (slib_list_node* p = head->next; p != head; p = p->next) {
+        Employee* p_emp = SLIB_CONTAINER_OF(p, Employee, list_node);
+        printf("<->[emp:%d]", p_emp->emp_no);
+    }
+    printf("<->[Head]\n");
+}
+
 int main() {
     Employee emps[NUM_EMP];
     slib_list_node head = {&head, &head};
@@ -18,13 +27,18 @@ int main() {
         emps[i].emp_no = i;
         slib_list_push_front(&head, &emps[i].list_node);
     }
+    print_employee_list(&head);
 
-    printf("[Head]");
-    for (slib_list_node* p = head.next; p != &head; p = p->next) {
-        Employee* p_emp = SLIB_CONTAINER_OF(p, Employee, list_node);
-        printf("<->[emp:%d]", p_emp->emp_no);
-    }
-    printf("<->[Head]\n");
+    slib_list_node* p;
+    p = slib_list_pop_front(&head);
+    printf("emp:%d poped!\n",
+           SLIB_CONTAINER_OF(p, Employee, list_node)->emp_no);
+    print_employee_list(&head);
+
+    p = slib_list_pop_back(&head);
+    printf("emp:%d poped!\n",
+           SLIB_CONTAINER_OF(p, Employee, list_node)->emp_no);
+    print_employee_list(&head);
 
     return 0;
 }
