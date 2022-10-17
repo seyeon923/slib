@@ -13,7 +13,8 @@ void __slib_list_unlink(slib_list_node* node) {
         return;
     }
 
-    if (!node->prev || !node->next) {
+    if (!node->prev || !node->next || node->prev == node ||
+        node->next == node) {
         return;
     }
 

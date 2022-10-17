@@ -21,24 +21,28 @@ void print_employee_list(slib_list_node* head) {
 
 int main() {
     Employee emps[NUM_EMP];
-    slib_list_node head = {&head, &head};
+    slib_list_node head;
+    slib_list_init_node(&head);
 
     for (int i = 0; i < NUM_EMP; ++i) {
         emps[i].emp_no = i;
         slib_list_push_front(&head, &emps[i].list_node);
     }
     print_employee_list(&head);
+    printf("list size: %lu\n", slib_list_get_size(&head));
 
     slib_list_node* p;
     p = slib_list_pop_front(&head);
     printf("emp:%d poped!\n",
            SLIB_CONTAINER_OF(p, Employee, list_node)->emp_no);
     print_employee_list(&head);
+    printf("list size: %lu\n", slib_list_get_size(&head));
 
     p = slib_list_pop_back(&head);
     printf("emp:%d poped!\n",
            SLIB_CONTAINER_OF(p, Employee, list_node)->emp_no);
     print_employee_list(&head);
+    printf("list size: %lu\n", slib_list_get_size(&head));
 
     return 0;
 }
