@@ -1,11 +1,6 @@
 #ifndef SLIB_INCLUDE_SLIB_LIST_H_
 #define SLIB_INCLUDE_SLIB_LIST_H_
 
-#include <stddef.h>
-
-#define SLIB_CONTAINER_OF(ptr, type, member) \
-    ((type*)((char*)ptr - offsetof(type, member)))
-
 typedef struct slib_list_node {
     struct slib_list_node* prev;
     struct slib_list_node* next;

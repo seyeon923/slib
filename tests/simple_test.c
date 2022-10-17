@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "include/slib/list.h"
+#include "include/slib/utils.h"
 
 typedef struct employee {
     int emp_no;
