@@ -82,8 +82,9 @@ static inline slib_list_node* slib_list_get_nth(slib_list_node* head,
         return NULL;
     }
 
-    for (slib_list_node *p = head->next, size_t i = 0; p != head;
-         p = p->next, ++i) {
+    slib_list_node* p;
+    size_t i;
+    for (p = head->next, i = 0; p != head; p = p->next, ++i) {
         if (i == idx) {
             return p;
         }
@@ -93,7 +94,7 @@ static inline slib_list_node* slib_list_get_nth(slib_list_node* head,
 
 // Pop idx-th node from the list and return it(0-based index)
 // If empty list or invalid idx, no action.
-static inilne slib_list_node* slib_list_pop_nth(slib_list_node* head,
+static inline slib_list_node* slib_list_pop_nth(slib_list_node* head,
                                                 size_t idx) {
     slib_list_node* nth = slib_list_get_nth(head, idx);
     __slib_list_unlink(nth);
