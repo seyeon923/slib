@@ -18,9 +18,6 @@ install(TARGETS ${CMAKE_PROJECT_NAME}
 
 install(DIRECTORY include/ DESTINATION include/)
 
-add_executable(simple_test tests/simple_test.c)
-target_link_libraries(simple_test PRIVATE ${CMAKE_PROJECT_NAME})
-
 # GoogleTest requires at least C++14
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
