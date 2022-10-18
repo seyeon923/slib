@@ -4,17 +4,17 @@ project(slib VERSION 0.1)
 
 set(CMAKE_VERBOSE_MAKEFILE TRUE)
 
-include_directories(${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-add_library(${CMAKE_PROJECT_NAME} src/list.c)
-target_include_directories(${CMAKE_PROJECT_NAME} INTERFACE
+add_library(${PROJECT_NAME} src/list.c)
+target_include_directories(${PROJECT_NAME} INTERFACE
     "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:include>")
 
-install(TARGETS ${CMAKE_PROJECT_NAME}
+install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION bin COMPONENT Runtime
     LIBRARY DESTINATION lib COMPONENT Runtime
-    ARCHIVE DESTINATION "lib/${CMAKE_PROJECT_NAME}" COMPONENT Development)
+    ARCHIVE DESTINATION "lib/${PROJECT_NAME}" COMPONENT Development)
 
 install(DIRECTORY include/ DESTINATION include/)
 
