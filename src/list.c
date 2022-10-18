@@ -8,7 +8,7 @@ void __slib_list_push(slib_list_node* prev, slib_list_node* new_node,
     next->prev = new_node;
 }
 
-void __slib_list_unlink(slib_list_node* node) {
+void slib_list_unlink(slib_list_node* node) {
     if (!node) {
         return;
     }

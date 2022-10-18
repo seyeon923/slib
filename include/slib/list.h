@@ -8,10 +8,16 @@ typedef struct slib_list_node {
     struct slib_list_node* next;
 } slib_list_node;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 void __slib_list_push(slib_list_node* prev, slib_list_node* new_node,
                       slib_list_node* next);
 
-void __slib_list_unlink(slib_list_node* node);
+void slib_list_unlink(slib_list_node* node);
+#ifdef __cplusplus
+}
+#endif
 
 // Init list node
 // Set both node->next, node->prev to NULL
@@ -39,7 +45,7 @@ static inline slib_list_node* slib_list_pop_front(slib_list_node* head) {
     if ((front = head->next) == head) {
         return NULL;
     }
-    __slib_list_unlink(front);
+    slib_list_unlink(front);
     return front;
 }
 
@@ -50,7 +56,7 @@ static inline slib_list_node* slib_list_pop_back(slib_list_node* head) {
     if ((back = head->prev) == head) {
         return NULL;
     }
-    __slib_list_unlink(back);
+    slib_list_unlink(back);
     return back;
 }
 
@@ -93,11 +99,11 @@ static inline slib_list_node* slib_list_get_nth(slib_list_node* head,
 }
 
 // Pop idx-th node from the list and return it(0-based index)
-// If empty list or invalid idx, no action.
+// If empty list or invalid idx, no action, and return null
 static inline slib_list_node* slib_list_pop_nth(slib_list_node* head,
                                                 size_t idx) {
     slib_list_node* nth = slib_list_get_nth(head, idx);
-    __slib_list_unlink(nth);
+    slib_list_unlink(nth);
     return nth;
 }
 

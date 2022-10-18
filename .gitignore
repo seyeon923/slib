@@ -1,6 +1,9 @@
 # build files
 build
 
+# Visual Stduio Settings
+.vscode
+
 # gitignore for CMake 
 CMakeLists.txt.user
 CMakeCache.txt
