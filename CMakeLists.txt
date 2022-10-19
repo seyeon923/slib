@@ -5,7 +5,7 @@ project(slib VERSION 0.1)
 set(CMAKE_DEBUG_POSTFIX d)
 
 option(CMAKE_VERBOSE_MAKEFILE "" TRUE)
-option(INCLUDE_TEST "Include Unit Test" FALSE)
+option(INCLUDE_TEST "Include Unit Test" TRUE)
 
 # control where the static and shared libraries are built so that on windows
 # we don't need to tinker with the path to run the executable
