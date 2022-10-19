@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.22)
 
 project(slib VERSION 0.1)
 
+set(CMAKE_DEBUG_POSTFIX d)
+
 option(CMAKE_VERBOSE_MAKEFILE "" TRUE)
 option(INCLUDE_TEST "Include Unit Test" FALSE)
 
