@@ -256,12 +256,12 @@ TEST_F(ListTest, GetInvalidNthTest) {
     EXPECT_EQ(slib_list_get_nth(&head, 1), nullptr);
     EXPECT_EQ(slib_list_get_nth(&head, 2), nullptr);
     EXPECT_EQ(slib_list_get_nth(&head, 10000), nullptr);
-    EXPECT_EQ(slib_list_get_nth(&head, -1), nullptr);
+    EXPECT_EQ(slib_list_get_nth(&head, static_cast<size_t>(-1)), nullptr);
 
     PushBackNodes({5, 21, 2, 34, 46});
     EXPECT_EQ(slib_list_get_nth(&head, 5), nullptr);
     EXPECT_EQ(slib_list_get_nth(&head, 10000), nullptr);
-    EXPECT_EQ(slib_list_get_nth(&head, -1), nullptr);
+    EXPECT_EQ(slib_list_get_nth(&head, static_cast<size_t>(-1)), nullptr);
 }
 
 TEST_F(ListTest, IsEmptyTest) {
