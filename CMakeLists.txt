@@ -5,7 +5,7 @@ project(slib VERSION 0.1)
 set(CMAKE_DEBUG_POSTFIX d)
 
 option(CMAKE_VERBOSE_MAKEFILE "" TRUE)
-option(INCLUDE_TEST "Include Unit Test" TRUE)
+option(SLIB_INCLUDE_TEST "Include unit test for slib" TRUE)
 
 # control where the static and shared libraries are built so that on windows
 # we don't need to tinker with the path to run the executable
@@ -44,21 +44,21 @@ install(TARGETS ${PROJECT_NAME}
 
 install(DIRECTORY include/ DESTINATION include/)
 
-# GoogleTest requires at least C++14
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+if (${SLIB_INCLUDE_TEST})
+    # GoogleTest requires at least C++14
+    set(CMAKE_CXX_STANDARD 20)
+    set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
-include(FetchContent)
-FetchContent_Declare(
-  googletest
-  GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG a9b2f0495cabb1ff01b51bcd0625cb1fd82da4ce # main on 2022.10.17
-)
-# For Windows: Prevent overriding the parent project's compiler/linker settings
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
+    include(FetchContent)
+    FetchContent_Declare(
+    googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG a9b2f0495cabb1ff01b51bcd0625cb1fd82da4ce # main on 2022.10.17
+    )
+    # For Windows: Prevent overriding the parent project's compiler/linker settings
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    FetchContent_MakeAvailable(googletest)
 
-if (${INCLUDE_TEST})
   enable_testing()
   add_subdirectory(tests)
 endif()
