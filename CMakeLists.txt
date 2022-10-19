@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.22)
 
 project(slib VERSION 0.1)
 
-set(CMAKE_VERBOSE_MAKEFILE TRUE)
+option(CMAKE_VERBOSE_MAKEFILE "" TRUE)
+option(INCLUDE_TEST "Include Unit Test" FALSE)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -32,5 +33,7 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-enable_testing()
-add_subdirectory(tests)
+if (${INCLUDE_TEST})
+  enable_testing()
+  add_subdirectory(tests)
+endif()
