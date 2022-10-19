@@ -12,8 +12,8 @@
 class ListTest : public ::testing::Test {
 protected:
     constexpr static int NUM_NODES = 100;
-    std::array<slib_list_node, NUM_NODES> nodes;
-    slib_list_node head;
+    std::array<slib_list_node_t, NUM_NODES> nodes;
+    slib_list_node_t head;
 
     void SetUp() override { slib_list_init_node(&head); }
 
@@ -22,7 +22,7 @@ protected:
         const std::source_location location = std::source_location::current()) {
         ASSERT_EQ(slib_list_get_size(&head), indices.size())
             << " from " << ToString(location);
-        slib_list_node* p = head.next;
+        slib_list_node_t* p = head.next;
         for (auto idx : indices) {
             EXPECT_EQ(p, &nodes[idx]) << " from " << ToString(location);
             p = p->next;
