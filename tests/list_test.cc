@@ -41,6 +41,7 @@ TEST_F(ListTest, NdeInitTest) {
     EXPECT_EQ(head.next, &head);
     EXPECT_EQ(head.prev, &head);
     EXPECT_EQ(slib_list_get_size(&head), 0);
+    EXPECT_TRUE(slib_list_is_empty(&head));
 }
 
 TEST_F(ListTest, PushPopTest) {
@@ -261,4 +262,10 @@ TEST_F(ListTest, GetInvalidNthTest) {
     EXPECT_EQ(slib_list_get_nth(&head, 5), nullptr);
     EXPECT_EQ(slib_list_get_nth(&head, 10000), nullptr);
     EXPECT_EQ(slib_list_get_nth(&head, -1), nullptr);
+}
+
+TEST_F(ListTest, IsEmptyTest) {
+    EXPECT_TRUE(slib_list_is_empty(&head));
+    slib_list_push_back(&head, &nodes[0]);
+    EXPECT_FALSE(slib_list_is_empty(&head));
 }

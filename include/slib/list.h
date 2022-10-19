@@ -19,6 +19,10 @@ void slib_list_unlink(slib_list_node* node);
 }
 #endif
 
+static inline int slib_list_is_empty(slib_list_node* head) {
+    return head->next == head && head->prev == head;
+}
+
 // Init list node
 // Set both node->next, node->prev to NULL
 static inline void slib_list_init_node(slib_list_node* node) {
