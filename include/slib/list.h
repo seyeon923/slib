@@ -123,4 +123,18 @@ static inline void slib_list_push_nth(slib_list_node_t* head,
     }
 }
 
+static inline slib_list_node_t* slib_list_get_back(slib_list_node_t* head) {
+    if (!head || slib_list_is_empty(head)) {
+        return NULL;
+    }
+    return head->prev;
+}
+
+static inline slib_list_node_t* slib_list_get_front(slib_list_node_t* head) {
+    if (!head || slib_list_is_empty(head)) {
+        return NULL;
+    }
+    return head->next;
+}
+
 #endif  // SLIB_INCLUDE_SLIB_LIST_H_

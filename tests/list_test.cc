@@ -269,3 +269,28 @@ TEST_F(ListTest, IsEmptyTest) {
     slib_list_push_back(&head, &nodes[0]);
     EXPECT_FALSE(slib_list_is_empty(&head));
 }
+
+TEST_F(ListTest, GetBackEmptyTest) {
+    EXPECT_EQ(slib_list_get_back(&head), nullptr);
+}
+
+TEST_F(ListTest, GetFrontEmptyTest) {
+    EXPECT_EQ(slib_list_get_front(&head), nullptr);
+}
+
+TEST_F(ListTest, GetFrontBackTest) {
+    slib_list_push_back(&head, &nodes[0]);
+    CheckListOrder({0});
+    EXPECT_EQ(slib_list_get_front(&head), &nodes[0]);
+    EXPECT_EQ(slib_list_get_back(&head), &nodes[0]);
+
+    slib_list_push_back(&head, &nodes[1]);
+    CheckListOrder({0, 1});
+    EXPECT_EQ(slib_list_get_front(&head), &nodes[0]);
+    EXPECT_EQ(slib_list_get_back(&head), &nodes[1]);
+
+    slib_list_push_front(&head, &nodes[10]);
+    CheckListOrder({10, 0, 1});
+    EXPECT_EQ(slib_list_get_front(&head), &nodes[10]);
+    EXPECT_EQ(slib_list_get_back(&head), &nodes[1]);
+}
